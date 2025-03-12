@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Solo Leveling</title>
+</head>
+<body>
+    <header>
+        <h1>Perfil de Usuario</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Inicio</a></li>
+                <li><a href="tareas.html">Mis Tareas</a></li>
+                <li><a href="logout.html">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Información Personal</h2>
+            <p><strong>Nombre:</strong> [Nombre del Usuario]</p>
+            <p><strong>Correo Electrónico:</strong> [correo@example.com]</p>
+        </section>
+
+        <section>
+            <h2>Progreso</h2>
+            <p><strong>Nivel:</strong> 1</p>
+            <p><strong>Experiencia:</strong> 0/100</p>
+            <p><strong>Rango:</strong> Novato</p>
+        </section>
+
+        <section>
+            <h2>Editar Perfil</h2>
+            <form action="update_profile.php" method="POST">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" value="[Nombre del Usuario]" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" value="[correo@example.com]" required>
+
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
