@@ -1,0 +1,97 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Fondo general y texto */
+body {
+    background-color: #0f0f0f; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    text-align: center;
+}
+
+/* Contenedor del formulario de registro */
+.register-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+h2 {
+    color: #00ffff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Formularios */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px solid #00ffff;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Botón de submit */
+button {
+    background: linear-gradient(90deg, #00ffff, #0077ff);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-shadow: 0 0 5px #000;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #ffcc00, #ff6600);
+    box-shadow: 0 0 10px #ff6600;
+}
+
+/* Estilo de los links */
+a {
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+/* Para mejorar la accesibilidad del formulario */
+input:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #ff6666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Contenedor de links en el formulario */
+.register-links {
+    margin-top: 20px;
+}
+
+.register-links a {
+    display: inline-block;
+    margin-top: 10px;
+}
