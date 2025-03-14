@@ -1,0 +1,147 @@
+/* Reinicio básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+}
+
+/* Fondo del dashboard con efecto de sombras */
+body {
+    background: #0a0a0a url('../img/jinwoo_fondo.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+}
+
+/* Encabezado con un estilo de "sistema de cacería" */
+header {
+    background: rgba(15, 15, 15, 0.95);
+    padding: 20px;
+    border-bottom: 2px solid #00eaff;
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #005566;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #00eaff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Menú de navegación flotante estilo "HUD de juego" */
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: #00eaff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ffcc00;
+}
+
+/* Panel del jugador con efecto neón */
+main {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    border: 2px solid #00eaff;
+}
+
+/* Secciones */
+section {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+h2 {
+    font-size: 22px;
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Lista de tareas */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: left;
+    transition: 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 5px #00eaff;
+}
+
+.task-list li:hover {
+    background: rgba(0, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+/* Estilo para el enlace "Ver todas las tareas" */
+.task-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #00eaff, #0077ff);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.task-link:hover {
+    background: linear-gradient(90deg, #ffcc00, #ff6600);
+    color: #000;
+    border-color: #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+    transform: scale(1.05);
+}
+/* Estilo del progreso */
+.progreso {
+    padding: 12px;
+    background: rgba(0, 255, 255, 0.15);
+    border-radius: 5px;
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 0 0 5px #00eaff;
+}
+
+.progreso span {
+    color: #ffcc00;
+    font-weight: bold;
+}
