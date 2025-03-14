@@ -18,13 +18,10 @@ body {
 header {
     background: rgba(15, 15, 15, 0.95);
     padding: 20px;
-    border-bottom: 2px solid #00eaff;
-    text-shadow: 0 0 10px #00eaff, 0 0 20px #005566;
 }
 
 header h1 {
     font-size: 28px;
-    color: #00eaff;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -42,7 +39,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: #00eaff;
+    color: #ffcc00;
     text-decoration: none;
     font-size: 18px;
     padding: 10px 20px;
@@ -144,4 +141,107 @@ ul li {
 .progreso span {
     color: #ffcc00;
     font-weight: bold;
+}/* Estilos específicos para la página de Motivación */
+
+/* Fondo con tono oscuro para contraste */
+body {
+    background: #0a0a0a;
+    color: #fff;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Encabezado con efecto de brillo dorado */
+header {
+    background: rgba(15, 15, 15, 0.95);
+    padding: 20px;
+    border-bottom: 2px solid #ffcc00;
+    text-shadow: 0 0 15px #ffcc00, 0 0 30px #aa8800;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Secciones con bordes y efectos dorados */
+main {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    border: 2px solid #ffcc00;
+}
+
+section {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 204, 0, 0.6);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+}
+
+h2 {
+    font-size: 22px;
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ffcc00;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Lista de logros con efecto de brillo */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: left;
+    transition: 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 5px #ffcc00;
+}
+
+.task-list li:hover {
+    background: rgba(255, 204, 0, 0.4);
+    transform: scale(1.05);
+}
+
+/* Frases motivacionales con estilo destacado */
+p {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+/* Botones de recompensa con efecto brillante */
+button {
+    background: linear-gradient(90deg, #ffcc00, #aa8800);
+    color: #000;
+    border: 2px solid #ffcc00;
+    padding: 12px 25px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #000;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #ffdd44, #cc9900);
+    box-shadow: 0 0 15px #ffcc00;
+    border-color: #ffdd44;
 }
