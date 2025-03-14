@@ -46,6 +46,7 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
     padding: 10px 20px;
+    border: 2px solid transparent;
     transition: all 0.3s ease;
 }
 
@@ -57,7 +58,7 @@ nav ul li a:hover {
 /* Contenedor principal */
 main {
     width: 90%;
-    max-width: 750px;
+    max-width: 850px;
     margin: 40px auto;
     padding: 20px;
     background: rgba(10, 10, 10, 0.9);
@@ -143,4 +144,20 @@ button:hover {
     box-shadow: 0 0 15px #ff6600;
     border-color: #ffcc00;
     transform: scale(1.05);
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: left;
+    transition: 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 5px #00eaff;
 }

@@ -6,7 +6,7 @@
     font-family: 'Orbitron', sans-serif; /* Fuente futurista */
 }
 
-/* Fondo del dashboard con efecto de sombras */
+/* Fondo con efecto de sombras */
 body {
     background: #0a0a0a url('../img/jinwoo_fondo.webp') no-repeat center center fixed;
     background-size: cover;
@@ -14,7 +14,7 @@ body {
     text-align: center;
 }
 
-/* Encabezado con un estilo de "sistema de cacería" */
+/* Encabezado */
 header {
     background: rgba(15, 15, 15, 0.95);
     padding: 20px;
@@ -29,11 +29,10 @@ header h1 {
     letter-spacing: 2px;
 }
 
-/* Menú de navegación flotante estilo "HUD de juego" */
+/* Menú de navegación */
 nav {
     margin-top: 10px;
 }
-
 nav ul {
     list-style: none;
     display: flex;
@@ -46,7 +45,6 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
     padding: 10px 20px;
-    border: 2px solid transparent;
     transition: all 0.3s ease;
 }
 
@@ -55,7 +53,7 @@ nav ul li a:hover {
     text-shadow: 0 0 10px #ffcc00;
 }
 
-/* Panel del jugador con efecto neón */
+/* Contenedor principal */
 main {
     width: 90%;
     max-width: 850px;
@@ -101,45 +99,67 @@ ul li {
     font-weight: bold;
     cursor: pointer;
     text-shadow: 0 0 5px #00eaff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .task-list li:hover {
     background: rgba(0, 255, 255, 0.4);
     transform: scale(1.05);
 }
+
+/* Checkbox personalizado */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #00eaff;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Formulario para agregar tarea */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+label {
+    font-size: 16px;
+    color: #00eaff;
+    text-shadow: 0 0 5px #00eaff;
+}
+
+input[type="text"], input[type="date"] {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #00eaff;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Botón */
 button {
     background: linear-gradient(90deg, #00eaff, #0077ff);
     color: #fff;
     border: 2px solid #00eaff;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    text-shadow: 0 0 5px #000;
+    padding: 12px 25px;
+    margin-top: 15px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    font-size: 16px;
+    text-shadow: 0 0 5px #000;
+    transition: 0.3s;
 }
 
 button:hover {
     background: linear-gradient(90deg, #ffcc00, #ff6600);
     box-shadow: 0 0 15px #ff6600;
     border-color: #ffcc00;
-    transform: scale(1.05);
-}
-
-/* Estilo del progreso */
-.progreso {
-    padding: 12px;
-    background: rgba(0, 255, 255, 0.15);
-    border-radius: 5px;
-    border: 2px solid rgba(0, 255, 255, 0.4);
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    text-shadow: 0 0 5px #00eaff;
-}
-
-.progreso span {
-    color: #ffcc00;
-    font-weight: bold;
 }
