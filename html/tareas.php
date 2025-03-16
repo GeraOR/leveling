@@ -1,3 +1,6 @@
+<?php
+include "../includes/db.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,9 +15,9 @@
         <h1>Mis Tareas</h1>
         <nav>
             <ul>
-                <li><a href="dashboard.html">Inicio</a></li>
-                <li><a href="perfil.html">Perfil</a></li>
-                <li><a href="logout.html">Cerrar Sesión</a></li>
+                <li><a href="dashboard.php">Inicio</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>

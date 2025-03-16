@@ -1,3 +1,6 @@
+<?php
+include "../includes/db.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,9 +15,9 @@
         <h1>Perfil de Usuario</h1>
         <nav>
             <ul>
-                <li><a href="dashboard.html">Inicio</a></li>
-                <li><a href="tareas.html">Mis Tareas</a></li>
-                <li><a href="logout.html">Cerrar Sesión</a></li>
+                <li><a href="dashboard.php">Inicio</a></li>
+                <li><a href="tareas.php">Mis Tareas</a></li>
+                <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -36,8 +39,8 @@
         </section>
         <section>
             <h2>Gestión Personal</h2>
-            <a href="motivacion.html" class="task-link">Ver Motivaciones</a>
-            <a href="penalizaciones.html" class="task-link">Ver Penalizaciones</a>
+            <a href="motivacion.php" class="task-link">Ver Motivaciones</a>
+            <a href="penalizaciones.php" class="task-link">Ver Penalizaciones</a>
         </section>
         
         <section>

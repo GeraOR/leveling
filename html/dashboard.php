@@ -1,3 +1,6 @@
+<?php
+include "../includes/db.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,9 +15,9 @@
         <h1>Bienvenido a Solo Leveling</h1>
         <nav>
             <ul>
-                <li><a href="perfil.html">Perfil</a></li>
-                <li><a href="tareas.html">Mis Tareas</a></li>
-                <li><a href="logout.html">Cerrar Sesión</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="tareas.php">Mis Tareas</a></li>
+                <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -34,7 +37,7 @@
                 <li>Ejemplo de tarea 1</li>
                 <li>Ejemplo de tarea 2</li>
             </ul>
-            <a href="tareas.html" class="task-link">Ver todas las tareas</a>
+            <a href="tareas.php" class="task-link">Ver todas las tareas</a>
         </section>
     </main>
 </body>

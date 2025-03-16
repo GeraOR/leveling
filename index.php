@@ -1,3 +1,6 @@
+<?php
+include "includes/db.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +22,7 @@
             
             <button type="submit">Ingresar</button>
         </form>
-        <p>¿No tienes cuenta? <a href="html/registro.html">Regístrate</a></p>
+        <p>¿No tienes cuenta? <a href="html/registro.php">Regístrate</a></p>
     </div>
 </body>
 </html>
