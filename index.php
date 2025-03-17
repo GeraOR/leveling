@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
         $_SESSION["usuario_id"] = $id;
         $_SESSION["usuario_nombre"] = $nombre;
-        header("Location: /leveling/html/dashboard.php");
+        header("Location: html/dashboard.php");
         exit();
     } else {
         echo "❌ Credenciales incorrectas";
@@ -36,8 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="login-container">
+    <?php if (isset($_SESSION["success"])) : ?>
+    <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
+    <?php unset($_SESSION["success"]); // Eliminar mensaje después de mostrarlo ?>
+<?php endif; ?>
         <h2>Iniciar Sesión</h2>
-        <form action="login.php" method="POST">
+        <form method="POST">
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" required>
             

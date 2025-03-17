@@ -1,19 +1,35 @@
 <?php
 include "../includes/db.php";
 
+$error = ""; // Variable para el mensaje de error
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once "../includes/db.php"; // Asegúrate de incluir la conexión a la base de datos
+
     $nombre = $_POST["nombre"];
     $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+    $password = $_POST["password"];
+    $password_confirm = $_POST["password_confirm"];
 
-    $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $nombre, $email, $password);
-
-    if ($stmt->execute()) {
-        echo "✅ Registro exitoso. <a href='login.php'>Inicia sesión</a>";
+    // Verificar si las contraseñas coinciden
+    if ($password !== $password_confirm) {
+        $error = "❌ Las contraseñas no coinciden.";
     } else {
-        echo "❌ Error en el registro: " . $conn->error;
+        // Encriptar la contraseña antes de guardarla
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        // Preparar la consulta SQL
+        $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $nombre, $email, $hashed_password);
+
+        if ($stmt->execute()) {
+            $_SESSION["success"] = "✅ Registro exitoso. Ahora puedes iniciar sesión.";
+            header("Location: ../index.php");
+            exit();
+        } else {
+            $error = "❌ Error en el registro: " . $conn->error;
+        }
     }
 }
 ?>
@@ -41,7 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="password_confirm">Confirmar Contraseña:</label>
             <input type="password" id="password_confirm" name="password_confirm" required>
-            
+            <?php if (!empty($error)) : ?>
+                <p style="color: red;" class="error"><?php echo $error; ?></p>
+            <?php endif; ?>
             <button type="submit">Registrarse</button>
         </form>
         <p>¿Ya tienes cuenta? <a href="../index.php">Inicia sesión</a></p>
