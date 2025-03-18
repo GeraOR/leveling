@@ -1,34 +1,32 @@
 <?php
 include "../includes/db.php";
-
-$error = ""; // Variable para el mensaje de error
 session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once "../includes/db.php"; // Asegúrate de incluir la conexión a la base de datos
+$mensaje = "";
 
-    $nombre = $_POST["nombre"];
-    $email = $_POST["email"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = trim($_POST["nombre"]);
+    $email = trim($_POST["email"]);
     $password = $_POST["password"];
     $password_confirm = $_POST["password_confirm"];
 
-    // Verificar si las contraseñas coinciden
-    if ($password !== $password_confirm) {
-        $error = "❌ Las contraseñas no coinciden.";
+    // Validar si la contraseña tiene al menos 6 caracteres
+    if (strlen($password) < 6) {
+        $mensaje = "<div class='error' style='color:red;'>❌ La contraseña debe tener al menos 6 caracteres.</div>";
+    } elseif ($password !== $password_confirm) {
+        $mensaje = "<div class='error' style='color:red;'>❌ Las contraseñas no coinciden.</div>";
     } else {
-        // Encriptar la contraseña antes de guardarla
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $password_hashed = password_hash($password, PASSWORD_BCRYPT);
 
-        // Preparar la consulta SQL
         $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $nombre, $email, $hashed_password);
+        $stmt->bind_param("sss", $nombre, $email, $password_hashed);
 
         if ($stmt->execute()) {
-            $_SESSION["success"] = "✅ Registro exitoso. Ahora puedes iniciar sesión.";
+            $_SESSION["success"] = "✅ Registro exitoso. Inicia sesión.";
             header("Location: ../index.php");
             exit();
         } else {
-            $error = "❌ Error en el registro: " . $conn->error;
+            $mensaje = "<div class='error' style='color:red;'>❌ Error en el registro: " . $conn->error . "</div>";
         }
     }
 }
@@ -57,8 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="password_confirm">Confirmar Contraseña:</label>
             <input type="password" id="password_confirm" name="password_confirm" required>
-            <?php if (!empty($error)) : ?>
-                <p style="color: red;" class="error"><?php echo $error; ?></p>
+            <?php if (!empty($mensaje)) : ?>
+                <p style="color: red;" class="error"><?php echo $mensaje; ?></p>
             <?php endif; ?>
             <button type="submit">Registrarse</button>
         </form>

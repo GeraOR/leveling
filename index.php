@@ -2,7 +2,7 @@
 include "includes/db.php";
 
 session_start();
-
+$mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: html/dashboard.php");
         exit();
     } else {
-        echo "❌ Credenciales incorrectas";
+        $mensaje=  "<div class='error' style='color:red;'>❌ Correo Electrónico o contraseña incorrectos.</div>";
     }
 }
 ?>
@@ -47,7 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
-            
+            <?php if (!empty($mensaje)) : ?>
+                <p style="color: red;" class="error"><?php echo $mensaje; ?></p>
+            <?php endif; ?>
             <button type="submit">Ingresar</button>
         </form>
         <p>¿No tienes cuenta? <a href="html/registro.php">Regístrate</a></p>
