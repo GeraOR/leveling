@@ -50,11 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" required>
             
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password">Contraseña: <span class="toggle-password" onclick="togglePassword('password')">👁️</span></label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <label for="password_confirm">Confirmar Contraseña: <span class="toggle-password" onclick="togglePassword('password_confirm')">👁️</span></label>
+            <div class="password-container">
+                <input type="password" id="password_confirm" name="password_confirm" required>
+                
+            </div>
 
-            <label for="password_confirm">Confirmar Contraseña:</label>
-            <input type="password" id="password_confirm" name="password_confirm" required>
             <?php if (!empty($mensaje)) : ?>
                 <p style="color: red;" class="error"><?php echo $mensaje; ?></p>
             <?php endif; ?>
@@ -62,5 +68,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <p>¿Ya tienes cuenta? <a href="../index.php">Inicia sesión</a></p>
     </div>
+    <script>
+function togglePassword(id) {
+    var input = document.getElementById(id);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+</script>
+
 </body>
 </html>
