@@ -63,7 +63,7 @@ $stmt->close();
         
         <section>
             <h2>Editar Perfil</h2>
-            <form action="update_profile.php" method="POST">
+            <form action="../scripts/update_profile.php" method="POST">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($usuario["nombre"]); ?>" required>
 
