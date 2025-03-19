@@ -2,21 +2,30 @@
 include "../includes/db.php";
 session_start();
 $mensaje = "";
-
+$nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
+$email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = trim($_POST["nombre"]);
-    $email = trim($_POST["email"]);
     $password = $_POST["password"];
     $password_confirm = $_POST["password_confirm"];
 
-    // Validar si la contraseña tiene al menos 6 caracteres
-    if (strlen($password) < 6) {
+    // Verificar si el correo ya existe
+    $sql_check = "SELECT id FROM usuarios WHERE email = ?";
+    $stmt_check = $conn->prepare($sql_check);
+    $stmt_check->bind_param("s", $email);
+    $stmt_check->execute();
+    $stmt_check->store_result();
+
+    if ($stmt_check->num_rows > 0) {
+        $mensaje = "<div class='error' style='color:red;'>❌ Este correo ya está registrado. Intenta con otro.</div>";
+    } elseif (strlen($password) < 6) {
         $mensaje = "<div class='error' style='color:red;'>❌ La contraseña debe tener al menos 6 caracteres.</div>";
     } elseif ($password !== $password_confirm) {
         $mensaje = "<div class='error' style='color:red;'>❌ Las contraseñas no coinciden.</div>";
     } else {
+        // Encriptar la contraseña
         $password_hashed = password_hash($password, PASSWORD_BCRYPT);
 
+        // Insertar en la base de datos
         $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $nombre, $email, $password_hashed);
@@ -29,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mensaje = "<div class='error' style='color:red;'>❌ Error en el registro: " . $conn->error . "</div>";
         }
     }
+    $stmt_check->close();
 }
 ?>
 <!DOCTYPE html>
@@ -45,21 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Crear Cuenta</h2>
         <form method="POST">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required>
 
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             
             <label for="password">Contraseña: <span class="toggle-password" onclick="togglePassword('password')">👁️</span></label>
-            <div class="password-container">
                 <input type="password" id="password" name="password" required>
-            </div>
             
             <label for="password_confirm">Confirmar Contraseña: <span class="toggle-password" onclick="togglePassword('password_confirm')">👁️</span></label>
-            <div class="password-container">
                 <input type="password" id="password_confirm" name="password_confirm" required>
-                
-            </div>
 
             <?php if (!empty($mensaje)) : ?>
                 <p style="color: red;" class="error"><?php echo $mensaje; ?></p>

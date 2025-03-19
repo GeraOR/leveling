@@ -3,8 +3,8 @@ include "includes/db.php";
 
 session_start();
 $mensaje = "";
+$email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
     $password = $_POST["password"];
 
     $sql = "SELECT id, nombre, password FROM usuarios WHERE email = ?";
@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Iniciar Sesión</h2>
         <form method="POST">
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             
-            <label for="password">Contraseña:</label>
+            <label for="password">Contraseña: <img src="img/ojo_cerrado.png" class="toggle-password" onclick="togglePassword('password', this)" alt="Mostrar contraseña" style="cursor: pointer; width: 20px; margin: 0 3px -4px;"></label>
             <input type="password" id="password" name="password" required>
             <?php if (!empty($mensaje)) : ?>
                 <p style="color: red;" class="error"><?php echo $mensaje; ?></p>
@@ -54,5 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <p>¿No tienes cuenta? <a href="html/registro.php">Regístrate</a></p>
     </div>
+    <script>
+        function togglePassword(fieldId, img) {
+            let input = document.getElementById(fieldId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                img.src = "img/ojo.png"; // Cambia al ojo cerrado
+            } else {
+                input.type = "password";
+                img.src = "img/ojo_cerrado.png"; // Cambia al ojo abierto
+            }
+        }
+    </script>
 </body>
 </html>
