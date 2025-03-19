@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             
-            <label for="password">Contraseña: <span class="toggle-password" onclick="togglePassword('password')">👁️</span></label>
+            <label for="password">Contraseña: <img src="../img/ojo_cerrado.png" class="toggle-password" onclick="togglePassword('password', this)" alt="Mostrar contraseña" style="cursor: pointer; width: 20px; margin: 0 3px -4px;"></label>
                 <input type="password" id="password" name="password" required>
             
-            <label for="password_confirm">Confirmar Contraseña: <span class="toggle-password" onclick="togglePassword('password_confirm')">👁️</span></label>
+            <label for="password_confirm">Confirmar Contraseña: <img src="../img/ojo_cerrado.png" class="toggle-password" onclick="togglePassword('password_confirm', this)" alt="Mostrar contraseña" style="cursor: pointer; width: 20px; margin: 0 3px -4px;"></label>
                 <input type="password" id="password_confirm" name="password_confirm" required>
 
             <?php if (!empty($mensaje)) : ?>
@@ -74,15 +74,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>¿Ya tienes cuenta? <a href="../index.php">Inicia sesión</a></p>
     </div>
     <script>
-function togglePassword(id) {
-    var input = document.getElementById(id);
-    if (input.type === "password") {
-        input.type = "text";
-    } else {
-        input.type = "password";
-    }
-}
-</script>
+        function togglePassword(fieldId, img) {
+            let input = document.getElementById(fieldId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                img.src = "../img/ojo.png"; // Cambia al ojo cerrado
+            } else {
+                input.type = "password";
+                img.src = "../img/ojo_cerrado.png"; // Cambia al ojo abierto
+            }
+        }
+    </script>
 
 </body>
 </html>
