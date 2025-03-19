@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
         $_SESSION["usuario_id"] = $id;
         $_SESSION["usuario_nombre"] = $nombre;
-        header("Location: html/dashboard.php");
+        header("Location: views/dashboard.php");
         exit();
     } else {
         $mensaje=  "<div class='error' style='color:red;'>❌ Correo Electrónico o contraseña incorrectos.</div>";
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
             <button type="submit">Ingresar</button>
         </form>
-        <p>¿No tienes cuenta? <a href="html/registro.php">Regístrate</a></p>
+        <p>¿No tienes cuenta? <a href="views/registro.php">Regístrate</a></p>
     </div>
     <script>
         function togglePassword(fieldId, img) {

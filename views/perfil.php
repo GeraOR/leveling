@@ -34,7 +34,7 @@ $stmt->close();
             <ul>
                 <li><a href="dashboard.php">Inicio</a></li>
                 <li><a href="tareas.php">Mis Tareas</a></li>
-                <li><a href="logout.php">Cerrar Sesión</a></li>
+                <li><a href="../scripts/logout.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
