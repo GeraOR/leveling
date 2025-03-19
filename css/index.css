@@ -130,20 +130,3 @@ h2 {
     filter: brightness(100%) !important;
     text-shadow: 0 0 0px white !important;
 }
-.password-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.password-container input {
-    flex: 1;
-    padding-right: 40px; /* Espacio para el ícono */
-}
-
-.toggle-password {
-    width: 25px; /* Ajusta según el tamaño de tu imagen */
-    height: 25px;
-    cursor: pointer;
-    margin-left: -30px;
-}
