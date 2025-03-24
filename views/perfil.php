@@ -42,6 +42,14 @@ $stmt->close();
     <main>
         <section>
             <h2>Información Personal</h2>
+            <?php if (isset($_SESSION["success"])) : ?>
+    <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
+    <?php unset($_SESSION["success"]);
+    endif; ?>
+    <?php if (isset($_SESSION["error"])) : ?>
+    <p style="color: red;"><?php echo $_SESSION["error"]; ?></p>
+    <?php unset($_SESSION["error"]);
+    endif; ?>
             <p><strong>Nombre:</strong> <?php echo htmlspecialchars($usuario["nombre"]); ?></p>
             <p><strong>Correo Electrónico:</strong> <?php echo htmlspecialchars($usuario["email"]); ?></p>
         </section>
