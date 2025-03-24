@@ -84,7 +84,7 @@ $stmt->close();
 
         <section>
             <h2>Cambiar Contraseña</h2>
-            <form action="update_password.php" method="POST">
+            <form action="../scripts/update_password.php" method="POST">
                 <label for="current_password">Contraseña Actual:</label>
                 <input type="password" id="current_password" name="current_password" required>
 
