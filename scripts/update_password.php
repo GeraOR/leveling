@@ -17,14 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que la nueva contraseña tenga al menos 6 caracteres
     if (strlen($new_password) < 6) {
         $_SESSION["error"] = "❌ La nueva contraseña debe tener al menos 6 caracteres.";
-        header("Location: ../views/perfil.php");
+        header("Location: ../views/perfil.php#password");
         exit();
     }
 
     // Verificar si las nuevas contraseñas coinciden
     if ($new_password !== $confirm_password) {
         $_SESSION["error"] = "❌ Las nuevas contraseñas no coinciden.";
-        header("Location: ../views/perfil.php");
+        header("Location: ../views/perfil.php#password");
         exit();
     }
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar que la contraseña actual ingresada sea correcta
     if (!password_verify($current_password, $password_hashed)) {
         $_SESSION["error"] = "❌ La contraseña actual es incorrecta.";
-        header("Location: ../views/perfil.php");
+        header("Location: ../views/perfil.php#password");
         exit();
     }
 
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
-    header("Location: ../views/perfil.php");
+    header("Location: ../views/perfil.php#password");
     exit();
 }
 ?>

@@ -42,14 +42,6 @@ $stmt->close();
     <main>
         <section>
             <h2>Información Personal</h2>
-            <?php if (isset($_SESSION["success"])) : ?>
-    <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
-    <?php unset($_SESSION["success"]);
-    endif; ?>
-    <?php if (isset($_SESSION["error"])) : ?>
-    <p style="color: red;"><?php echo $_SESSION["error"]; ?></p>
-    <?php unset($_SESSION["error"]);
-    endif; ?>
             <p><strong>Nombre:</strong> <?php echo htmlspecialchars($usuario["nombre"]); ?></p>
             <p><strong>Correo Electrónico:</strong> <?php echo htmlspecialchars($usuario["email"]); ?></p>
         </section>
@@ -69,7 +61,7 @@ $stmt->close();
             <a href="penalizaciones.php" class="task-link">Ver Penalizaciones</a>
         </section>
         
-        <section>
+        <section id="perfil">
             <h2>Editar Perfil</h2>
             <form action="../scripts/update_profile.php" method="POST">
                 <label for="name">Nombre:</label>
@@ -77,12 +69,19 @@ $stmt->close();
 
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($usuario["email"]); ?>" required>
-                
+                <?php if (isset($_SESSION["perfil_success"])) : ?>
+    <p style="color: green;"><?php echo $_SESSION["perfil_success"]; ?></p>
+    <?php unset($_SESSION["perfil_success"]);
+    endif; ?>
+    <?php if (isset($_SESSION["perfil_error"])) : ?>
+    <p style="color: red;"><?php echo $_SESSION["perfil_error"]; ?></p>
+    <?php unset($_SESSION["perfil_error"]);
+    endif; ?>
                 <button type="submit">Guardar Cambios</button>
             </form>
         </section>
 
-        <section>
+        <section id="password">
             <h2>Cambiar Contraseña</h2>
             <form action="../scripts/update_password.php" method="POST">
                 <label for="current_password">Contraseña Actual:</label>
@@ -93,7 +92,14 @@ $stmt->close();
 
                 <label for="confirm_password">Confirmar Nueva Contraseña:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
-                
+                <?php if (isset($_SESSION["success"])) : ?>
+    <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
+    <?php unset($_SESSION["success"]);
+    endif; ?>
+    <?php if (isset($_SESSION["error"])) : ?>
+    <p style="color: red;"><?php echo $_SESSION["error"]; ?></p>
+    <?php unset($_SESSION["error"]);
+    endif; ?>
                 <button type="submit">Cambiar Contraseña</button>
             </form>
         </section>

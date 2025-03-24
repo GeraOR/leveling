@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $_SESSION["error"] = "❌ Este correo ya está en uso por otro usuario.";
-        header("Location: ../views/perfil.php");
+        $_SESSION["perfil_error"] = "❌ Este correo ya está en uso por otro usuario.";
+        header("Location: ../views/perfil.php#perfil");
         exit();
     }
 
@@ -33,13 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssi", $nombre, $email, $usuario_id);
 
     if ($stmt->execute()) {
-        $_SESSION["success"] = "✅ Perfil actualizado correctamente.";
+        $_SESSION["perfil_success"] = "✅ Perfil actualizado correctamente.";
     } else {
-        $_SESSION["error"] = "❌ Error al actualizar el perfil.";
+        $_SESSION["perfil_error"] = "❌ Error al actualizar el perfil.";
     }
 
     $stmt->close();
-    header("Location: ../views/perfil.php");
+    header("Location: ../views/perfil.php#perfil");
     exit();
 }
 ?>
