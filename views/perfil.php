@@ -45,6 +45,15 @@ $stmt->close();
             <p><strong>Nombre:</strong> <?php echo htmlspecialchars($usuario["nombre"]); ?></p>
             <p><strong>Correo Electrónico:</strong> <?php echo htmlspecialchars($usuario["email"]); ?></p>
         </section>
+        <section id="foto-perfil">
+            <h2>Foto de Perfil</h2>
+            <img src="../uploads/<?php echo $_SESSION['foto'] ?? 'default.png'; ?>" alt="Foto de perfil" width="150">
+    
+            <form action="../scripts/update_photo.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="foto" accept="image/*" required>
+                <button type="submit">Actualizar Foto</button>
+            </form>
+        </section>
 
         <section>
             <h2>Progreso</h2>
