@@ -9,7 +9,7 @@ if (!isset($_SESSION["usuario_id"])) {
 $usuario_id = $_SESSION["usuario_id"];
 
 // Obtener datos del usuario
-$sql = "SELECT nombre, email, nivel, xp FROM usuarios WHERE id = ?";
+$sql = "SELECT nombre, email, foto, nivel, xp FROM usuarios WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -47,8 +47,8 @@ $stmt->close();
         </section>
         <section id="foto-perfil">
             <h2>Foto de Perfil</h2>
-            <img src="../uploads/<?php echo $_SESSION['foto'] ?? 'default.png'; ?>" alt="Foto de perfil" width="150">
-    
+            <img src="../uploads/<?php echo htmlspecialchars($usuario["foto"] ?? 'default.png'); ?>" alt="Foto de perfil" width="150">
+
             <form action="../scripts/update_photo.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="foto" accept="image/*" required>
                 <button type="submit">Actualizar Foto</button>

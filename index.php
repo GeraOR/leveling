@@ -7,17 +7,18 @@ $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
-    $sql = "SELECT id, nombre, password FROM usuarios WHERE email = ?";
+    $sql = "SELECT id, nombre, foto, password FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($id, $nombre, $hashed_password);
+    $stmt->bind_result($id, $nombre,$foto, $hashed_password);
     $stmt->fetch();
 
     if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
         $_SESSION["usuario_id"] = $id;
         $_SESSION["usuario_nombre"] = $nombre;
+        $_SESSION["foto"] = $usuario["foto"] ?? 'default.png';
         header("Location: views/dashboard.php");
         exit();
     } else {

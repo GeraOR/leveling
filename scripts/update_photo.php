@@ -7,18 +7,25 @@ if (!isset($_SESSION["usuario_id"])) {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
-    $usuario_id = $_SESSION["usuario_id"];
-    $foto_nombre = "user_" . $usuario_id . "_" . time() . ".png";
-    $ruta = "../uploads/" . $foto_nombre;
+$usuario_id = $_SESSION["usuario_id"];
 
-    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta)) {
-        $query = $conn->prepare("UPDATE usuarios SET foto = ? WHERE id = ?");
-        $query->execute([$foto_nombre, $usuario_id]);
-        $_SESSION["foto"] = $foto_nombre;
+if ($_FILES["foto"]["error"] == 0) {
+    $nombreArchivo = "perfil_" . $usuario_id . "_" . time() . "." . pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+    $rutaDestino = "../uploads/" . $nombreArchivo;
+
+    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $rutaDestino)) {
+        // Guardar la nueva foto en la base de datos
+        $sql = "UPDATE usuarios SET foto = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("si", $nombreArchivo, $usuario_id);
+        $stmt->execute();
+        $stmt->close();
+
+        // Actualizar la sesión
+        $_SESSION["foto"] = $nombreArchivo;
     }
 }
 
-header("Location: ../views/perfil.php#foto-perfil");
+header("Location: ../views/perfil.php");
 exit();
 ?>
