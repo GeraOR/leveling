@@ -17,6 +17,10 @@ $result = $stmt->get_result();
 $usuario = $result->fetch_assoc();
 
 $stmt->close();
+$foto = !empty($usuario["foto"]) ? $usuario["foto"] : "default.png";
+
+// Actualizar la sesión con la foto
+$_SESSION["foto"] = $foto;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,7 +51,18 @@ $stmt->close();
         </section>
         <section id="foto-perfil">
             <h2>Foto de Perfil</h2>
-            <img src="../uploads/<?php echo htmlspecialchars($usuario["foto"] ?? 'default.png'); ?>" alt="Foto de perfil" width="150">
+            <img src="../uploads/<?php echo htmlspecialchars($_SESSION["foto"]); ?>?t=<?php echo time(); ?>" 
+                 alt="Foto de perfil" width="150">
+
+            <?php if (isset($_SESSION["foto_success"])) : ?>
+                <p style="color: green; font-weight: bold;"><?php echo $_SESSION["foto_success"]; ?></p>
+                <?php unset($_SESSION["foto_success"]); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION["foto_error"])) : ?>
+                <p style="color: red; font-weight: bold;"><?php echo $_SESSION["foto_error"]; ?></p>
+                <?php unset($_SESSION["foto_error"]); ?>
+            <?php endif; ?>
 
             <form action="../scripts/update_photo.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="foto" accept="image/*" required>
