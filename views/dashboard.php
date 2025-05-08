@@ -14,6 +14,15 @@ $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $usuario = $result->fetch_assoc();
+
+// Obtener tareas pendientes del usuario
+$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id DESC LIMIT 5";
+$stmt = $conn->prepare($sql_tareas);
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result_tareas = $stmt->get_result();
+$tareas = $result_tareas->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,9 +57,21 @@ $usuario = $result->fetch_assoc();
         <section>
             <h2>Tareas Pendientes</h2>
             <ul class="task-list">
-                <li>Ejemplo de tarea 1</li>
-                <li>Ejemplo de tarea 2</li>
-            </ul>
+    <?php if (count($tareas) > 0): ?>
+        <?php foreach ($tareas as $tarea): ?>
+            <li>
+                <?php echo htmlspecialchars($tarea["descripcion"]); ?>
+                <form action="../scripts/marcar_completada.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
+                    <button type="submit">✔</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li>No tienes tareas pendientes.</li>
+    <?php endif; ?>
+</ul>
+
             <a href="tareas.php" class="task-link">Ver todas las tareas</a>
         </section>
     </main>
