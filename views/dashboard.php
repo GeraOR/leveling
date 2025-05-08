@@ -5,6 +5,15 @@ if (!isset($_SESSION["usuario_id"])) {
     header("Location: ../index.php");
     exit();
 }
+
+$usuario_id = $_SESSION["usuario_id"];
+// Obtener datos del usuario
+$sql = "SELECT nombre, email, foto, nivel, xp, rango FROM usuarios WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$usuario = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,9 +40,9 @@ if (!isset($_SESSION["usuario_id"])) {
         <section>
             <h2>Progreso</h2>
             <div class="progreso">
-                <p><strong>Nivel:</strong> <span>1</span></p>
-                <p><strong>Experiencia:</strong> <span>0/100</span></p>
-                <p><strong>Rango:</strong> <span>Novato</span></p>
+                <p><strong>Nivel:</strong> <span><?php echo $usuario["nivel"]; ?></span></p>
+                <p><strong>Experiencia:</strong> <span><?php echo $usuario["xp"]; ?>/100</span></p>
+                <p><strong>Rango:</strong> <span><?php echo $usuario["rango"]; ?></span></p>
             </div>
         </section>
         <section>
