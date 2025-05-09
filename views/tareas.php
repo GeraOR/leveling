@@ -5,6 +5,15 @@ if (!isset($_SESSION["usuario_id"])) {
     header("Location: ../index.php");
     exit();
 }
+$usuario_id = $_SESSION["usuario_id"];
+// Obtener tareas pendientes del usuario
+$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 5";
+$stmt = $conn->prepare($sql_tareas);
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result_tareas = $stmt->get_result();
+$tareas = $result_tareas->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,16 +39,33 @@ if (!isset($_SESSION["usuario_id"])) {
     <main>
         <section>
             <h2>Lista de Tareas</h2>
+            <?php if (isset($_SESSION["tarea_success"])) : ?>
+    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["tarea_success"]; ?></p>
+    <?php unset($_SESSION["tarea_success"]); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION["tarea_error"])) : ?>
+    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["tarea_error"]; ?></p>
+    <?php unset($_SESSION["tarea_error"]); ?>
+<?php endif; ?>
+
             <ul class="task-list">
-                <li>
-                    <input type="checkbox" id="task1">
-                    <label for="task1">Ejemplo de tarea 1</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="task2">
-                    <label for="task2">Ejemplo de tarea 2</label>
-                </li>
-            </ul>
+    <?php if (count($tareas) > 0): ?>
+        <?php foreach ($tareas as $tarea): ?>
+            <li>
+                <form action="../scripts/marcar_completada.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
+                    <button type="submit" class="task-mark"
+            title="Marcar como hecha">✔</button>
+                </form>
+                <span style="padding-left: 10px;">
+                <?php echo htmlspecialchars($tarea["descripcion"]); ?></span>
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li>No tienes tareas pendientes.</li>
+    <?php endif; ?>
+</ul>
         </section>
 
         <section>
