@@ -15,7 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["tarea_id"])) {
     $sql = "UPDATE tareas SET estado = 0 WHERE id = ? AND usuario_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $tarea_id, $usuario_id);
-    $stmt->execute();
+    if ($stmt->execute()) {
+        $_SESSION["tarea_success"] = "¡Tarea completada con éxito!";
+    } else {
+        $_SESSION["tarea_error"] = "Hubo un error al marcar la tarea.";
+    }
     $stmt->close();
 }
 

@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 $usuario = $result->fetch_assoc();
 
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id DESC LIMIT 5";
+$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 5";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -32,6 +32,33 @@ $stmt->close();
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Dashboard - Solo Leveling</title>
+    <style>
+        
+.task-mark{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+                padding: 4px 8px;
+                font-size: 14px;
+                margin-left: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+}
+.fade-out {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.fade-out.hidden {
+    opacity: 0;
+}
+
+    </style>
 </head>
 <body>
     <header>
@@ -55,16 +82,29 @@ $stmt->close();
             </div>
         </section>
         <section>
+        
             <h2>Tareas Pendientes</h2>
+            <?php if (isset($_SESSION["tarea_success"])) : ?>
+    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["tarea_success"]; ?></p>
+    <?php unset($_SESSION["tarea_success"]); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION["tarea_error"])) : ?>
+    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["tarea_error"]; ?></p>
+    <?php unset($_SESSION["tarea_error"]); ?>
+<?php endif; ?>
+
             <ul class="task-list">
     <?php if (count($tareas) > 0): ?>
         <?php foreach ($tareas as $tarea): ?>
             <li>
-                <?php echo htmlspecialchars($tarea["descripcion"]); ?>
                 <form action="../scripts/marcar_completada.php" method="POST" style="display:inline;">
                     <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
-                    <button type="submit">✔</button>
+                    <button type="submit" class="task-mark"
+            title="Marcar como hecha">✔</button>
                 </form>
+                <span style="padding-left: 10px;">
+                <?php echo htmlspecialchars($tarea["descripcion"]); ?></span>
             </li>
         <?php endforeach; ?>
     <?php else: ?>
@@ -77,3 +117,13 @@ $stmt->close();
     </main>
 </body>
 </html>
+<script>
+    // Desvanece y luego oculta mensajes después de 3 segundos
+    setTimeout(() => {
+        const mensajes = document.querySelectorAll("p[style*='font-weight: bold']");
+        mensajes.forEach(msg => {
+            msg.classList.add("fade-out");
+            setTimeout(() => msg.classList.add("hidden"), 1000); // Espera a que se desvanezca
+        });
+    }, 3000);
+</script>
