@@ -61,11 +61,12 @@ $stmt->close();
 
     </style>
 </head>
-<body>
+<body id="inicio">
     <header>
         <h1>Bienvenido a Solo Leveling</h1>
         <nav>
             <ul>
+                <li><a href="#inicio">Inicio</a></li>
                 <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="tareas.php">Mis Tareas</a></li>
                 <li><a href="../scripts/logout.php">Cerrar Sesión</a></li>

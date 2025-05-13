@@ -31,12 +31,13 @@ $_SESSION["foto"] = $foto;
     <link rel="stylesheet" href="../css/perfil.css">
     <title>Perfil - Solo Leveling</title>
 </head>
-<body>
+<body  id="perfil">
     <header>
         <h1>Perfil de Usuario</h1>
         <nav>
             <ul>
                 <li><a href="dashboard.php">Inicio</a></li>
+                <li><a href="#perfil">Perfil</a></li>
                 <li><a href="tareas.php">Mis Tareas</a></li>
                 <li><a href="../scripts/logout.php">Cerrar Sesión</a></li>
             </ul>

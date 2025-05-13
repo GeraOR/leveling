@@ -50,13 +50,14 @@ $stmt->close();
 }
     </style>
 </head>
-<body>
+<body id="tareas">
     <header>
         <h1>Mis Tareas</h1>
         <nav>
             <ul>
                 <li><a href="dashboard.php">Inicio</a></li>
                 <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="#tareas">Mis Tareas</a></li>
                 <li><a href="../scripts/logout.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
