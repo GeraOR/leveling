@@ -23,5 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["tarea_id"])) {
     $stmt->close();
 }
 
-header("Location: ../views/dashboard.php");
+// Redirigir a la página anterior
+$referer = $_SERVER['HTTP_REFERER'] ?? '../views/dashboard.php';
+header("Location: $referer");
 exit();
+
