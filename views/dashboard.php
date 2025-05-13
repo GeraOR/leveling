@@ -40,6 +40,7 @@ $stmt->close();
             color: white;
                 padding: 4px 8px;
                 font-size: 14px;
+                margin-top: auto;
                 margin-left: 10px;
                 border-radius: 5px;
                 cursor: pointer;
