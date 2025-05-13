@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["tarea_id"])) {
     $usuario_id = $_SESSION["usuario_id"];
 
     // Asegurar que la tarea pertenece al usuario
-    $sql = "UPDATE tareas SET estado = 0 WHERE id = ? AND usuario_id = ?";
+    $sql = "UPDATE tareas SET estado = 'completada' WHERE id = ? AND usuario_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $tarea_id, $usuario_id);
     if ($stmt->execute()) {
