@@ -23,6 +23,32 @@ $stmt->close();
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/tareas.css">
     <title>Mis Tareas - Solo Leveling</title>
+    <style>
+        .task-mark{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+                padding: 4px 8px;
+                margin-top: auto;
+                font-size: 14px;
+                margin-left: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+}
+.fade-out {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.fade-out.hidden {
+    opacity: 0;
+}
+    </style>
 </head>
 <body>
     <header>
