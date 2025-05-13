@@ -109,3 +109,13 @@ $stmt->close();
     </main>
 </body>
 </html>
+<script>
+    // Desvanece y luego oculta mensajes después de 3 segundos
+    setTimeout(() => {
+        const mensajes = document.querySelectorAll("p[style*='font-weight: bold']");
+        mensajes.forEach(msg => {
+            msg.classList.add("fade-out");
+            setTimeout(() => msg.classList.add("hidden"), 1000); // Espera a que se desvanezca
+        });
+    }, 3000);
+</script>
