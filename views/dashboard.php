@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 $usuario = $result->fetch_assoc();
 
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 5";
+$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 3";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -57,6 +57,31 @@ $stmt->close();
 
 .fade-out.hidden {
     opacity: 0;
+}
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #00eaff;
+}
+.boton-pequeno {
+    font-size: 14px;
+    padding: 4px 8px;
+    margin-top: auto;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-pequeno.eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.boton-pequeno.eliminar:hover {
+    background-color: #bd2130;
 }
 
     </style>
@@ -99,14 +124,17 @@ $stmt->close();
             <ul class="task-list">
     <?php if (count($tareas) > 0): ?>
         <?php foreach ($tareas as $tarea): ?>
-            <li>
+            <li class="task-item">
                 <form action="../scripts/marcar_completada.php" method="POST" style="display:inline;">
                     <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
                     <button type="submit" class="task-mark"
             title="Marcar como hecha">✔</button>
                 </form>
-                <span style="padding-left: 10px;">
-                <?php echo htmlspecialchars($tarea["descripcion"]); ?></span>
+                <?php echo htmlspecialchars($tarea["descripcion"]); ?>
+                <form action="../scripts/eliminar_tarea.php" method="POST" style="display: inline;" onsubmit="return confirm('¿Seguro que quieres eliminar esta tarea?');">
+            <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
+            <button type="submit" class="boton-pequeno eliminar">🗑</button>
+        </form>
             </li>
         <?php endforeach; ?>
     <?php else: ?>
