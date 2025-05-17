@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
-    header("Location: ../views/perfil.php#perfil");
+    header("Location: ../views/perfil.php#profile");
     exit();
 }
 ?>

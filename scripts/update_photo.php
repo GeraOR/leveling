@@ -47,6 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
     }
 }
 
-header("Location: ../views/perfil.php");
+header("Location: ../views/perfil.php#photo");
 exit();
 ?>

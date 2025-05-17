@@ -30,6 +30,16 @@ $_SESSION["foto"] = $foto;
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/perfil.css">
     <title>Perfil - Solo Leveling</title>
+    <style>
+        .fade-out {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.fade-out.hidden {
+    opacity: 0;
+}
+    </style>
 </head>
 <body  id="perfil">
     <header>
@@ -50,7 +60,7 @@ $_SESSION["foto"] = $foto;
             <p><strong>Nombre:</strong> <?php echo htmlspecialchars($usuario["nombre"]); ?></p>
             <p><strong>Correo Electrónico:</strong> <?php echo htmlspecialchars($usuario["email"]); ?></p>
         </section>
-        <section id="foto-perfil">
+        <section id="photo">
             <h2>Foto de Perfil</h2>
             <img src="../uploads/<?php echo htmlspecialchars($_SESSION["foto"]); ?>?t=<?php echo time(); ?>" 
                  alt="Foto de perfil" width="150">
@@ -84,12 +94,12 @@ $_SESSION["foto"] = $foto;
 </form>
 
 <?php if (isset($_SESSION["xp_success"])) : ?>
-    <p style="color: green;"><?php echo $_SESSION["xp_success"]; ?></p>
+    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["xp_success"]; ?></p>
     <?php unset($_SESSION["xp_success"]); ?>
 <?php endif; ?>
 
 <?php if (isset($_SESSION["xp_error"])) : ?>
-    <p style="color: red;"><?php echo $_SESSION["xp_error"]; ?></p>
+    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["xp_error"]; ?></p>
     <?php unset($_SESSION["xp_error"]); ?>
 <?php endif; ?>
 
@@ -102,7 +112,7 @@ $_SESSION["foto"] = $foto;
             <a href="penalizaciones.php" class="task-link">Ver Penalizaciones</a>
         </section>
         
-        <section id="perfil">
+        <section id="profile">
             <h2>Editar Perfil</h2>
             <form action="../scripts/update_profile.php" method="POST">
                 <label for="name">Nombre:</label>
@@ -111,11 +121,11 @@ $_SESSION["foto"] = $foto;
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($usuario["email"]); ?>" required>
                 <?php if (isset($_SESSION["perfil_success"])) : ?>
-    <p style="color: green;"><?php echo $_SESSION["perfil_success"]; ?></p>
+    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["perfil_success"]; ?></p>
     <?php unset($_SESSION["perfil_success"]);
     endif; ?>
     <?php if (isset($_SESSION["perfil_error"])) : ?>
-    <p style="color: red;"><?php echo $_SESSION["perfil_error"]; ?></p>
+    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["perfil_error"]; ?></p>
     <?php unset($_SESSION["perfil_error"]);
     endif; ?>
                 <button type="submit">Guardar Cambios</button>
@@ -134,11 +144,11 @@ $_SESSION["foto"] = $foto;
                 <label for="confirm_password">Confirmar Nueva Contraseña:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
                 <?php if (isset($_SESSION["success"])) : ?>
-    <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
+    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["success"]; ?></p>
     <?php unset($_SESSION["success"]);
     endif; ?>
     <?php if (isset($_SESSION["error"])) : ?>
-    <p style="color: red;"><?php echo $_SESSION["error"]; ?></p>
+    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["error"]; ?></p>
     <?php unset($_SESSION["error"]);
     endif; ?>
                 <button type="submit">Cambiar Contraseña</button>
@@ -147,3 +157,13 @@ $_SESSION["foto"] = $foto;
     </main>
 </body>
 </html>
+<script>
+    // Desvanece y luego oculta mensajes después de 3 segundos
+    setTimeout(() => {
+        const mensajes = document.querySelectorAll("p[style*='font-weight: bold']");
+        mensajes.forEach(msg => {
+            msg.classList.add("fade-out");
+            setTimeout(() => msg.classList.add("hidden"), 1000); // Espera a que se desvanezca
+        });
+    }, 3000);
+</script>
