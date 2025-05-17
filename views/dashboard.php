@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 $usuario = $result->fetch_assoc();
 
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 3";
+$sql_tareas = "SELECT id, titulo, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 3";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -130,7 +130,7 @@ $stmt->close();
                     <button type="submit" class="task-mark"
             title="Marcar como hecha">✔</button>
                 </form>
-                <?php echo htmlspecialchars($tarea["descripcion"]); ?>
+                <?php echo htmlspecialchars($tarea["titulo"]); ?>
                 <form action="../scripts/eliminar_tarea.php" method="POST" style="display: inline;" onsubmit="return confirm('¿Seguro que quieres eliminar esta tarea?');">
             <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
             <button type="submit" class="boton-pequeno eliminar">🗑</button>
