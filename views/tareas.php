@@ -90,17 +90,31 @@ $stmt->close();
 
     <main>
         <section>
-            <h2>Agregar Nueva Tarea</h2>
-            <form action="add_task.php" method="POST">
-                <label for="task">Tarea:</label>
-                <input type="text" id="task" name="task" required>
+    <h2>Agregar Nueva Tarea</h2>
+    <?php if (isset($_SESSION["task_success"])): ?>
+    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["task_success"]; ?></p>
+    <?php unset($_SESSION["task_success"]); ?>
+<?php endif; ?>
 
-                <label for="due_date">Fecha límite:</label>
-                <input type="date" id="due_date" name="due_date">
+<?php if (isset($_SESSION["task_error"])): ?>
+    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["task_error"]; ?></p>
+    <?php unset($_SESSION["task_error"]); ?>
+<?php endif; ?>
 
-                <button type="submit">Agregar</button>
-            </form>
-        </section>
+    <form action="../scripts/add_task.php" method="POST">
+        <label for="titulo">Título de la Tarea:</label>
+        <input type="text" id="titulo" name="titulo" required>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+        <label for="due_date">Fecha límite:</label>
+        <input type="date" id="due_date" name="due_date">
+
+        <button type="submit">Agregar</button>
+    </form>
+</section>
+
         <section>
             <h2>Lista de Tareas</h2>
             <?php if (isset($_SESSION["tarea_success"])) : ?>
