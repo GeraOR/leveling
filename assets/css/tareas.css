@@ -140,6 +140,14 @@ input[type="text"], input[type="date"], textarea {
     text-align: center;
     font-size: 16px;
 }
+input[type="date"]{
+    width: 30%;
+}
+    /* Elimina el ícono por defecto en algunos navegadores */
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1); /* blanco para fondos oscuros */
+    }
 
 /* Botón */
 button {
