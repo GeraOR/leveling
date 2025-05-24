@@ -28,7 +28,7 @@ $_SESSION["foto"] = $foto;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/leveling/assets/css/styles.css?v=1.0">
-    <link rel="stylesheet" href="/leveling/assets/css/perfil.css?v=1.0">
+    <link rel="stylesheet" href="/leveling/assets/css/perfil.css?v=1.1">
     <title>Perfil - Solo Leveling</title>
     <style>
         .fade-out {
