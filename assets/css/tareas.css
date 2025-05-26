@@ -168,3 +168,76 @@ button:hover {
     box-shadow: 0 0 15px #ff6600;
     border-color: #ffcc00;
 }
+.task-mark{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+                padding: 4px 8px;
+                margin-top: auto;
+                font-size: 14px;
+                margin-left: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                -ms-border-radius: 5px;
+                -o-border-radius: 5px;
+}
+.fade-out {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.fade-out.hidden {
+    opacity: 0;
+}
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #00eaff;
+}
+.boton-pequeno {
+    font-size: 14px;
+    padding: 4px 8px;
+    margin-top: auto;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.boton-pequeno.eliminar {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.boton-pequeno.eliminar:hover {
+    background-color: #bd2130 !important;
+}
+.boton-pequeno.ver {
+    background-color: #007bff !important;
+    color: white !important;
+}
+
+.boton-pequeno.ver:hover {
+    background-color: #0056b3 !important;
+}
+
+.boton-pequeno.editar {
+    background-color: #ffc107 !important;
+    color: white !important;
+}
+
+.boton-pequeno.editar:hover {
+    background-color: #e0a800 !important;
+}
+.boton-pequeno.marcar {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+.boton-pequeno.marcar:hover {
+    background-color: #2e7d32 !important;
+}
