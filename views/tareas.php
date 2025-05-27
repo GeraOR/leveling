@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario_id"])) {
 }
 $usuario_id = $_SESSION["usuario_id"];
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, titulo, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC";
+$sql_tareas = "SELECT id, titulo, descripcion, fecha_limite, xp_recompensa FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -20,8 +20,8 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/leveling/assets/css/styles.css?v=1.2">
-    <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.3">
+    <link rel="stylesheet" href="/leveling/assets/css/styles.css?v=1.3">
+    <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Mis Tareas - Solo Leveling</title>
 </head>
@@ -87,12 +87,14 @@ $stmt->close();
                     <div style="display: flex; gap: 5px;">
                         <form action="ver_tarea.php" method="GET" style="display:inline;">
                             <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
-                            <button type="submit" class="boton-pequeno ver" title="Ver tarea">👁</button>
+                            <button class="boton-pequeno ver" type="button"
+    onclick="abrirModalVer('<?php echo addslashes($tarea['titulo']); ?>', '<?php echo addslashes($tarea['descripcion']); ?>', '<?php echo $tarea['fecha_limite']; ?>', '<?php echo addslashes($tarea['xp_recompensa']); ?>')">👁</button>
                         </form>
 
                         <form action="editar_tarea.php" method="GET" style="display:inline;">
                             <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
-<button type="submit" class="boton-pequeno editar" title="Editar tarea">
+    <button class="boton-pequeno editar" type="button"
+    onclick="abrirModalEditar('<?php echo $tarea['id']; ?>', '<?php echo addslashes($tarea['titulo']); ?>', '<?php echo addslashes($tarea['descripcion']); ?>', '<?php echo $tarea['fecha_limite']; ?>')">
     <i class="fas fa-edit"></i>
 </button>
                         </form>
@@ -116,6 +118,34 @@ $stmt->close();
 </section>
 
     </main>
+    <!-- Modal Ver Tarea -->
+<div id="modalVer" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modalVer')">&times;</span>
+    <h3 id="verTitulo"></h3>
+    <p id="verDescripcion"></p>
+    <p><strong>XP recompensa:</strong> <span id="verXpRecompensa"></span></p>
+    <p><strong>Fecha límite:</strong> <span id="verFecha"></span></p>
+  </div>
+</div>
+
+<!-- Modal Editar Tarea -->
+<div id="modalEditar" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal('modalEditar')">&times;</span>
+    <form id="formEditar" method="POST" action="../scripts/task_update.php">
+      <input type="hidden" name="tarea_id" id="editarId">
+      <label for="editarTitulo">Título:</label>
+      <input type="text" id="editarTitulo" name="titulo" required>
+      <label for="editarDescripcion">Descripción:</label>
+      <textarea id="editarDescripcion" name="descripcion" rows="4" required></textarea>
+      <label for="editarFecha">Fecha límite:</label>
+      <input type="date" id="editarFecha" name="due_date">
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
 <script>
@@ -127,4 +157,25 @@ $stmt->close();
             setTimeout(() => msg.classList.add("hidden"), 1000); // Espera a que se desvanezca
         });
     }, 3000);
+</script>
+<script>
+function abrirModalVer(titulo, descripcion, fecha, xpRecompensa) {
+    document.getElementById('verTitulo').innerText = titulo;
+    document.getElementById('verDescripcion').innerText = descripcion;
+    document.getElementById('verXpRecompensa').innerText = xpRecompensa;
+    document.getElementById('verFecha').innerText = fecha;
+    document.getElementById('modalVer').style.display = 'block';
+}
+
+function abrirModalEditar(id, titulo, descripcion, fecha) {
+    document.getElementById('editarId').value = id;
+    document.getElementById('editarTitulo').value = titulo;
+    document.getElementById('editarDescripcion').value = descripcion;
+    document.getElementById('editarFecha').value = fecha;
+    document.getElementById('modalEditar').style.display = 'block';
+}
+
+function cerrarModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
 </script>
