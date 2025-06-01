@@ -6,6 +6,15 @@ if (!isset($_SESSION["usuario_id"])) {
     header("Location: ../index.php");
     exit();
 }
+$puntos = match($tarea['importancia']) {
+    'alta' => 40,
+    'media' => 20,
+    'baja' => 10,
+    'mínima' => 5,
+    default => 0,
+};
+
+// Lógica para sumar puntos a tu usuario...
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["tarea_id"])) {
     $tarea_id = $_POST["tarea_id"];

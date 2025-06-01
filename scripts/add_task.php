@@ -11,11 +11,13 @@ $usuario_id = $_SESSION["usuario_id"];
 $titulo = trim($_POST["titulo"]);
 $descripcion = trim($_POST["descripcion"]);
 $fecha_limite = !empty($_POST["due_date"]) ? $_POST["due_date"] : null;
+$importancia = $_POST['importancia'];
 
 if ($titulo && $descripcion) {
-    $sql = "INSERT INTO tareas (usuario_id, titulo, descripcion, fecha_limite) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO tareas (usuario_id, titulo, descripcion, fecha_limite, importancia) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isss", $usuario_id, $titulo, $descripcion, $fecha_limite);
+    $stmt->bind_param("issss", $usuario_id, $titulo, $descripcion, $fecha_limite, $importancia);
+
 
     if ($stmt->execute()) {
         $_SESSION["task_success"] = "Tarea agregada correctamente.";

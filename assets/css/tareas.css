@@ -268,3 +268,15 @@ button:hover {
   font-size: 28px;
   cursor: pointer;
 }
+.etiqueta-importancia {
+    display: inline-block;
+    width: 80px; /* Puedes ajustar el ancho */
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-transform: capitalize;
+    margin-right: 15px;
+}

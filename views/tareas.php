@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario_id"])) {
 }
 $usuario_id = $_SESSION["usuario_id"];
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, titulo, descripcion, fecha_limite, xp_recompensa FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC";
+$sql_tareas = "SELECT id, titulo, descripcion, fecha_limite, xp_recompensa, importancia FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -15,13 +15,25 @@ $result_tareas = $stmt->get_result();
 $tareas = $result_tareas->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 ?>
+<?php
+function obtenerColor($importancia) {
+    return match($importancia) {
+        'alta' => 'background-color: #dc3545;',   // rojo
+        'media' => 'background-color: #ffc107;',  // amarillo
+        'baja' => 'background-color: #007bff;',   // azul
+        'mínima' => 'background-color: #6c757d;', // gris
+        default => '',
+    };
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/leveling/assets/css/styles.css?v=1.3">
-    <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.4">
+    <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Mis Tareas - Solo Leveling</title>
 </head>
@@ -58,6 +70,14 @@ $stmt->close();
         <label for="descripcion">Descripción:</label>
         <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
 
+        <label for="importancia">Importancia:</label>
+        <select id="importancia" name="importancia" required>
+            <option value="alta">🔴 Alta</option>
+            <option value="media">🟡 Media</option>
+            <option value="baja">🔵 Baja</option>
+            <option value="mínima">⚪ Mínima</option>
+        </select>
+
         <label for="due_date">Fecha límite:</label>
         <input type="date" id="due_date" name="due_date">
 
@@ -81,6 +101,11 @@ $stmt->close();
         <?php if (count($tareas) > 0): ?>
             <?php foreach ($tareas as $tarea): ?>
                 <li class="task-item">
+                    <span class="etiqueta-importancia" style="<?php echo obtenerColor($tarea['importancia']); ?>">
+    <?php echo ucfirst($tarea['importancia']); ?>
+</span>
+
+
                     <div style="flex-grow: 1;">
                         <?php echo htmlspecialchars($tarea["titulo"]); ?>
                     </div>
@@ -108,6 +133,7 @@ $stmt->close();
                             <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
                             <button type="submit" class="boton-pequeno eliminar">🗑</button>
                         </form>
+                        
                     </div>
                 </li>
             <?php endforeach; ?>
