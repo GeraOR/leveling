@@ -33,7 +33,7 @@ function obtenerColor($importancia) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/leveling/assets/css/styles.css?v=1.3">
-    <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.5">
+    <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Mis Tareas - Solo Leveling</title>
 </head>
@@ -62,14 +62,15 @@ function obtenerColor($importancia) {
     <p style="color: red; font-weight: bold;"><?php echo $_SESSION["task_error"]; ?></p>
     <?php unset($_SESSION["task_error"]); ?>
 <?php endif; ?>
-
+<br>
     <form action="../scripts/add_task.php" method="POST" autocomplete="off">
         <label for="titulo">Título de la Tarea:</label>
         <input type="text" id="titulo" name="titulo" required>
 
         <label for="descripcion">Descripción:</label>
         <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-
+<div class="input-row">
+    <div class="form-group">
         <label for="importancia">Importancia:</label>
         <select id="importancia" name="importancia" required>
             <option value="alta">🔴 Alta</option>
@@ -77,9 +78,13 @@ function obtenerColor($importancia) {
             <option value="baja">🔵 Baja</option>
             <option value="mínima">⚪ Mínima</option>
         </select>
+    </div>
 
+    <div class="form-group">
         <label for="due_date">Fecha límite:</label>
         <input type="date" id="due_date" name="due_date">
+    </div>
+</div>
 
         <button type="submit">Agregar</button>
     </form>

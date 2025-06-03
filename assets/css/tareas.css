@@ -129,7 +129,7 @@ label {
     text-shadow: 0 0 5px #00eaff;
 }
 
-input[type="text"], input[type="date"], textarea {
+input[type="text"], input[type="date"], textarea, select {
     width: 80%;
     max-width: 400px;
     padding: 10px;
@@ -140,14 +140,37 @@ input[type="text"], input[type="date"], textarea {
     text-align: center;
     font-size: 16px;
 }
+select{
+    width: 150px;
+    text-align: justify;
+}
 input[type="date"]{
-    width: 30%;
+    width: 150px;
 }
     /* Elimina el ícono por defecto en algunos navegadores */
     input[type="date"]::-webkit-inner-spin-button,
     input[type="date"]::-webkit-calendar-picker-indicator {
         filter: invert(1); /* blanco para fondos oscuros */
     }
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 30px; /* espacio entre los campos */
+    flex-wrap: wrap; /* para que no se desborde en pantallas pequeñas */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* para que ocupen el mismo espacio */
+    min-width: 150px; /* evita que se hagan muy pequeños */
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #00eaff;
+}
 
 /* Botón */
 button {
