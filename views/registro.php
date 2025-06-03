@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="/leveling/assets/css/registro.css?v=1.0">
     <title>Registro - Solo Leveling</title>
 </head>
+
 <body>
     <div class="register-container">
         <h2>Crear Cuenta</h2>
@@ -59,12 +61,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-            
+
             <label for="password">Contraseña: <img src="../img/ojo_cerrado.png" class="toggle-password" onclick="togglePassword('password', this)" alt="Mostrar contraseña" style="cursor: pointer; width: 20px; margin: 0 3px -4px;"></label>
-                <input type="password" id="password" name="password" required>
-            
+            <input type="password" id="password" name="password" required>
+
             <label for="password_confirm">Confirmar Contraseña: <img src="../img/ojo_cerrado.png" class="toggle-password" onclick="togglePassword('password_confirm', this)" alt="Mostrar contraseña" style="cursor: pointer; width: 20px; margin: 0 3px -4px;"></label>
-                <input type="password" id="password_confirm" name="password_confirm" required>
+            <input type="password" id="password_confirm" name="password_confirm" required>
 
             <?php if (!empty($mensaje)) : ?>
                 <p style="color: red;" class="error"><?php echo $mensaje; ?></p>
@@ -88,4 +90,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 
 </body>
+
 </html>

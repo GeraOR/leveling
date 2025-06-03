@@ -6,7 +6,7 @@ if (!isset($_SESSION["usuario_id"])) {
     header("Location: ../index.php");
     exit();
 }
-$puntos = match($tarea['importancia']) {
+$puntos = match ($tarea['importancia']) {
     'alta' => 40,
     'media' => 20,
     'baja' => 10,
@@ -36,4 +36,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["tarea_id"])) {
 $referer = $_SERVER['HTTP_REFERER'] ?? '../views/dashboard.php';
 header("Location: $referer");
 exit();
-

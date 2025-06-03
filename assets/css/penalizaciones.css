@@ -1,139 +1,141 @@
 /* Reinicio básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
 }
 
 /* Fondo del dashboard con efecto de sombras */
 body {
-    background: #0a0a0a url('../img/jinwoo_fondo.webp') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    text-align: center;
+  background: #0a0a0a url("../img/jinwoo_fondo.webp") no-repeat center center
+    fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
 }
 
 /* Encabezado con un estilo de "sistema de cacería" */
 header {
-    background: rgba(15, 15, 15, 0.95);
-    padding: 20px;
-    border-bottom: 2px solid #ff4444;
-    text-shadow: 0 0 10px #ff4444, 0 0 20px #990000;
+  background: rgba(15, 15, 15, 0.95);
+  padding: 20px;
+  border-bottom: 2px solid #ff4444;
+  text-shadow: 0 0 10px #ff4444, 0 0 20px #990000;
 }
 
 header h1 {
-    font-size: 28px;
-    color: #ff4444;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  font-size: 28px;
+  color: #ff4444;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* Menú de navegación */
 nav {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
 nav ul li a {
-    color: #ff4444;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 20px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+  color: #ff4444;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #ffcc00;
-    text-shadow: 0 0 10px #ffcc00;
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ffcc00;
 }
 
 /* Contenedor principal */
 main {
-    width: 90%;
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 20px;
-    background: rgba(10, 10, 10, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-    border: 2px solid #ff4444;
+  width: 90%;
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(10, 10, 10, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  border: 2px solid #ff4444;
 }
 
 /* Secciones */
 section {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 2px solid rgba(255, 0, 0, 0.4);
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
 }
 
 h2 {
-    font-size: 22px;
-    color: #ff4444;
-    text-shadow: 0 0 10px #ff4444;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+  font-size: 22px;
+  color: #ff4444;
+  text-shadow: 0 0 10px #ff4444;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 /* Tabla de penalizaciones */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    background: rgba(255, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
 }
 
 thead {
-    background: rgba(255, 0, 0, 0.3);
+  background: rgba(255, 0, 0, 0.3);
 }
 
-th, td {
-    padding: 12px;
-    border: 1px solid rgba(255, 0, 0, 0.5);
-    text-align: center;
+th,
+td {
+  padding: 12px;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  text-align: center;
 }
 
 th {
-    color: #ffffff;
-    text-shadow: 0 0 5px #ff4444;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ff4444;
 }
 
 tbody tr:hover {
-    background: rgba(255, 0, 0, 0.2);
+  background: rgba(255, 0, 0, 0.2);
 }
 
 /* Lista de reglas */
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 ul li {
-    padding: 12px;
-    margin: 5px 0;
-    border-radius: 5px;
-    text-align: left;
-    transition: 0.3s;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    text-shadow: 0 0 5px #ff4444;
+  padding: 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  text-align: left;
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 0 5px #ff4444;
 }
 
 .task-list li:hover {
-    background: rgba(255, 0, 0, 0.4);
-    transform: scale(1.05);
+  background: rgba(255, 0, 0, 0.4);
+  transform: scale(1.05);
 }

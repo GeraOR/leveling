@@ -6,4 +6,3 @@ if ($conn) {
 } else {
     echo "❌ Error de conexión";
 }
-?>

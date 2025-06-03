@@ -59,4 +59,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../views/perfil.php#password");
     exit();
 }
-?>

@@ -24,24 +24,16 @@ $_SESSION["foto"] = $foto;
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/leveling/assets/css/styles.css?v=1.0">
-    <link rel="stylesheet" href="/leveling/assets/css/perfil.css?v=1.1">
+    <link rel="stylesheet" href="/leveling/assets/css/perfil.css?v=1.2">
     <title>Perfil - Solo Leveling</title>
-    <style>
-        .fade-out {
-    opacity: 1;
-    transition: opacity 1s ease-out;
-}
-
-.fade-out.hidden {
-    opacity: 0;
-}
-    </style>
 </head>
-<body  id="perfil">
+
+<body id="perfil">
     <header>
         <h1>Perfil de Usuario</h1>
         <nav>
@@ -62,8 +54,8 @@ $_SESSION["foto"] = $foto;
         </section>
         <section id="photo">
             <h2>Foto de Perfil</h2>
-            <img src="../uploads/<?php echo htmlspecialchars($_SESSION["foto"]); ?>?t=<?php echo time(); ?>" 
-                 alt="Foto de perfil" width="150">
+            <img src="../uploads/<?php echo htmlspecialchars($_SESSION["foto"]); ?>?t=<?php echo time(); ?>"
+                alt="Foto de perfil" width="150">
 
             <?php if (isset($_SESSION["foto_success"])) : ?>
                 <p style="color: green; font-weight: bold;"><?php echo $_SESSION["foto_success"]; ?></p>
@@ -88,20 +80,20 @@ $_SESSION["foto"] = $foto;
                 <p><strong>Experiencia:</strong> <span><?php echo $usuario["xp"]; ?>/100</span></p>
                 <p><strong>Rango:</strong> <span><?php echo $usuario["rango"]; ?></span></p>
                 <form action="../scripts/update_xp.php" method="POST" style="margin-top: 20px;">
-    <label for="xp">Sumar experiencia:</label>
-    <input type="number" name="xp" id="xp" min="1" required>
-    <button type="submit">Ganar XP</button>
-</form>
+                    <label for="xp">Sumar experiencia:</label>
+                    <input type="number" name="xp" id="xp" min="1" required>
+                    <button type="submit">Ganar XP</button>
+                </form>
 
-<?php if (isset($_SESSION["xp_success"])) : ?>
-    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["xp_success"]; ?></p>
-    <?php unset($_SESSION["xp_success"]); ?>
-<?php endif; ?>
+                <?php if (isset($_SESSION["xp_success"])) : ?>
+                    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["xp_success"]; ?></p>
+                    <?php unset($_SESSION["xp_success"]); ?>
+                <?php endif; ?>
 
-<?php if (isset($_SESSION["xp_error"])) : ?>
-    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["xp_error"]; ?></p>
-    <?php unset($_SESSION["xp_error"]); ?>
-<?php endif; ?>
+                <?php if (isset($_SESSION["xp_error"])) : ?>
+                    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["xp_error"]; ?></p>
+                    <?php unset($_SESSION["xp_error"]); ?>
+                <?php endif; ?>
 
             </div>
         </section>
@@ -111,7 +103,7 @@ $_SESSION["foto"] = $foto;
             <a href="motivacion.php" class="task-link">Ver Motivaciones</a>
             <a href="penalizaciones.php" class="task-link">Ver Penalizaciones</a>
         </section>
-        
+
         <section id="profile">
             <h2>Editar Perfil</h2>
             <form action="../scripts/update_profile.php" method="POST">
@@ -121,13 +113,13 @@ $_SESSION["foto"] = $foto;
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($usuario["email"]); ?>" required>
                 <?php if (isset($_SESSION["perfil_success"])) : ?>
-    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["perfil_success"]; ?></p>
-    <?php unset($_SESSION["perfil_success"]);
-    endif; ?>
-    <?php if (isset($_SESSION["perfil_error"])) : ?>
-    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["perfil_error"]; ?></p>
-    <?php unset($_SESSION["perfil_error"]);
-    endif; ?>
+                    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["perfil_success"]; ?></p>
+                <?php unset($_SESSION["perfil_success"]);
+                endif; ?>
+                <?php if (isset($_SESSION["perfil_error"])) : ?>
+                    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["perfil_error"]; ?></p>
+                <?php unset($_SESSION["perfil_error"]);
+                endif; ?>
                 <button type="submit">Guardar Cambios</button>
             </form>
         </section>
@@ -144,18 +136,19 @@ $_SESSION["foto"] = $foto;
                 <label for="confirm_password">Confirmar Nueva Contraseña:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
                 <?php if (isset($_SESSION["success"])) : ?>
-    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["success"]; ?></p>
-    <?php unset($_SESSION["success"]);
-    endif; ?>
-    <?php if (isset($_SESSION["error"])) : ?>
-    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["error"]; ?></p>
-    <?php unset($_SESSION["error"]);
-    endif; ?>
+                    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["success"]; ?></p>
+                <?php unset($_SESSION["success"]);
+                endif; ?>
+                <?php if (isset($_SESSION["error"])) : ?>
+                    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["error"]; ?></p>
+                <?php unset($_SESSION["error"]);
+                endif; ?>
                 <button type="submit">Cambiar Contraseña</button>
             </form>
         </section>
     </main>
 </body>
+
 </html>
 <script>
     // Desvanece y luego oculta mensajes después de 3 segundos

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($id, $nombre,$foto, $hashed_password);
+    $stmt->bind_result($id, $nombre, $foto, $hashed_password);
     $stmt->fetch();
 
     if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
@@ -22,12 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: views/dashboard.php");
         exit();
     } else {
-        $mensaje=  "<div class='error' style='color:red;'>❌ Correo Electrónico o contraseña incorrectos.</div>";
+        $mensaje =  "<div class='error' style='color:red;'>❌ Correo Electrónico o contraseña incorrectos.</div>";
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,17 +36,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="/leveling/assets/css/index.css?v=1.0">
     <title>Login - Solo Leveling</title>
 </head>
+
 <body>
     <div class="login-container">
-    <?php if (isset($_SESSION["success"])) : ?>
-    <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
-    <?php unset($_SESSION["success"]); // Eliminar mensaje después de mostrarlo ?>
-<?php endif; ?>
+        <?php if (isset($_SESSION["success"])) : ?>
+            <p style="color: green;"><?php echo $_SESSION["success"]; ?></p>
+            <?php unset($_SESSION["success"]); // Eliminar mensaje después de mostrarlo 
+            ?>
+        <?php endif; ?>
         <h2>Iniciar Sesión</h2>
         <form method="POST">
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-            
+
             <label for="password">Contraseña: <img src="img/ojo_cerrado.png" class="toggle-password" onclick="togglePassword('password', this)" alt="Mostrar contraseña" style="cursor: pointer; width: 20px; margin: 0 3px -4px;"></label>
             <input type="password" id="password" name="password" required>
             <?php if (!empty($mensaje)) : ?>
@@ -69,4 +72,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </body>
+
 </html>

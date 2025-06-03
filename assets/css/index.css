@@ -1,40 +1,40 @@
 /* Centrar el contenedor en el medio de la pantalla */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;  /* Usa toda la altura de la pantalla */
-    margin: 0;
-    background-color: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Usa toda la altura de la pantalla */
+  margin: 0;
+  background-color: #0f0f0f;
 }
 h2 {
-    color: #00ffff;
-    font-size: 24px;
-    margin-bottom: 20px;
+  color: #00ffff;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 /* Contenedor del Login */
 .login-container {
-    background: rgba(0, 0, 0, 0.9);
-    border: 2px solid #00ffff;
-    border-radius: 10px;
-    padding: 30px;
-    width: 320px;
-    text-align: center;
-    box-shadow: 0 0 20px #00ffff;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+  padding: 30px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0 20px #00ffff;
 }
 
 /* Evita el fondo blanco en autocompletado */
 .login-container input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
-    text-align: center;
-    outline: none;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
 }
 
 /* Forzar fondo oscuro y texto blanco en autocompletado */
@@ -42,91 +42,90 @@ h2 {
 .login-container input:-webkit-autofill:hover,
 .login-container input:-webkit-autofill:focus,
 .login-container input:-webkit-autofill:active {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.1) inset !important;
-    color: white !important; /* Texto blanco */
-    caret-color: white !important; /* Color del cursor */
-    font-weight: bold !important; /* Hacerlo más visible */
-    transition: background-color 5000s ease-in-out 0s;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.1) inset !important;
+  color: white !important; /* Texto blanco */
+  caret-color: white !important; /* Color del cursor */
+  font-weight: bold !important; /* Hacerlo más visible */
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* En caso de que aún no funcione, forzamos los estilos con "!important" */
 .login-container input {
-    color: white !important;
-    font-weight: bold !important;
+  color: white !important;
+  font-weight: bold !important;
 }
-
 
 /* Placeholder estilizado */
 .login-container input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* Botón de Login */
 .login-container button {
-    width: 100%;
-    background: linear-gradient(90deg, #00ffff, #0077ff);
-    border: none;
-    color: #000;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-    border-radius: 5px;
-    text-shadow: 0 0 5px #000;
+  width: 100%;
+  background: linear-gradient(90deg, #00ffff, #0077ff);
+  border: none;
+  color: #000;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-shadow: 0 0 5px #000;
 }
 
 .login-container button:hover {
-    background: linear-gradient(90deg, #ffcc00, #ff6600);
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #ff6600;
+  background: linear-gradient(90deg, #ffcc00, #ff6600);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff6600;
 }
 
 /* Enlace de registro */
 .login-container p {
-    margin-top: 15px;
-    font-size: 14px;
+  margin-top: 15px;
+  font-size: 14px;
 }
 
 .login-container a {
-    color: #00ffff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+  color: #00ffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .login-container a:hover {
-    color: #ffcc00;
-    text-shadow: 0 0 5px #ffcc00;
+  color: #ffcc00;
+  text-shadow: 0 0 5px #ffcc00;
 }
 /* Estilo normal de los inputs */
 .login-container input {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-weight: bold;
-    border: 2px solid #00ffff;
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: bold;
+  border: 2px solid #00ffff;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
 }
 
 /* Forzar color del texto blanco en autocompletado */
 .login-container input:-webkit-autofill {
-    -webkit-text-fill-color: white !important; /* Forzar texto blanco */
-    -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.1) inset !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white !important; /* Forzar texto blanco */
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.1) inset !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Extra: Evitar que el navegador cambie el color al autocompletar */
 .login-container input:-webkit-autofill::first-line {
-    color: white !important;
+  color: white !important;
 }
 
 /* En caso de que siga oscuro, aplicamos un "truco" con text-shadow */
 .login-container input:-webkit-autofill {
-    filter: brightness(100%) !important;
-    text-shadow: 0 0 0px white !important;
+  filter: brightness(100%) !important;
+  text-shadow: 0 0 0px white !important;
 }

@@ -37,7 +37,8 @@ while ($xpTotal >= 100) {
 }
 
 // Calcular nuevo rango
-function obtenerRango($nivel) {
+function obtenerRango($nivel)
+{
     if ($nivel >= 280) {
         return "Clase S+";
     } elseif ($nivel >= 210) {

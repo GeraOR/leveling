@@ -8,6 +8,7 @@ if (!isset($_SESSION["usuario_id"])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@ if (!isset($_SESSION["usuario_id"])) {
     <link rel="stylesheet" href="/leveling/assets/css/motivacion.css?v=1.0">
     <title>Motivación - Solo Leveling</title>
 </head>
+
 <body>
     <header>
         <h1>Motivación y Recompensas</h1>
@@ -52,4 +54,5 @@ if (!isset($_SESSION["usuario_id"])) {
         </section>
     </main>
 </body>
+
 </html>
