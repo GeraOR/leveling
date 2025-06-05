@@ -173,6 +173,13 @@ function obtenerColor($importancia)
                 <input type="text" id="editarTitulo" name="titulo" required>
                 <label for="editarDescripcion">Descripción:</label>
                 <textarea id="editarDescripcion" name="descripcion" rows="4" required></textarea>
+                <label for="editaarImportancia">Importancia:</label>
+                <select id="editarImportancia" name="importancia" required>
+                    <option value="alta">🔴 Alta</option>
+                    <option value="media">🟡 Media</option>
+                    <option value="baja">🔵 Baja</option>
+                    <option value="mínima">⚪ Mínima</option>
+                </select>
                 <label for="editarFecha">Fecha límite:</label>
                 <input type="date" id="editarFecha" name="due_date">
                 <button type="submit">Guardar Cambios</button>
@@ -202,6 +209,7 @@ function obtenerColor($importancia)
             document.getElementById('editarId').value = id;
             document.getElementById('editarTitulo').value = titulo;
             document.getElementById('editarDescripcion').value = descripcion;
+            document.getElementById('editarImportancia').value = importancia;
             document.getElementById('editarFecha').value = fecha;
             document.getElementById('modalEditar').style.display = 'block';
         }
