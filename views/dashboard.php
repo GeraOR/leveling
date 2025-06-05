@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 $usuario = $result->fetch_assoc();
 
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, titulo, descripcion FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC LIMIT 3";
+$sql_tareas = "SELECT id, titulo, descripcion, xp_recompensa FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY xp_recompensa DESC LIMIT 3";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();

@@ -85,7 +85,7 @@ function obtenerColor($importancia)
 
                     <div class="form-group">
                         <label for="due_date">Fecha límite:</label>
-                        <input type="date" id="due_date" name="due_date">
+                        <input type="date" id="due_date" name="due_date" required>
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@ function obtenerColor($importancia)
                                 <form action="editar_tarea.php" method="GET" style="display:inline;">
                                     <input type="hidden" name="tarea_id" value="<?php echo $tarea["id"]; ?>">
                                     <button class="boton-pequeno editar" type="button"
-                                        onclick="abrirModalEditar('<?php echo $tarea['id']; ?>', '<?php echo addslashes($tarea['titulo']); ?>', '<?php echo addslashes($tarea['descripcion']); ?>', '<?php echo $tarea['fecha_limite']; ?>')">
+                                        onclick="abrirModalEditar('<?php echo $tarea['id']; ?>', '<?php echo addslashes($tarea['titulo']); ?>', '<?php echo addslashes($tarea['descripcion']); ?>', '<?php echo $tarea['fecha_limite']; ?>', '<?php echo $tarea['importancia']; ?>')">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </form>
@@ -173,7 +173,7 @@ function obtenerColor($importancia)
                 <input type="text" id="editarTitulo" name="titulo" required>
                 <label for="editarDescripcion">Descripción:</label>
                 <textarea id="editarDescripcion" name="descripcion" rows="4" required></textarea>
-                <label for="editaarImportancia">Importancia:</label>
+                <label for="editarImportancia">Importancia:</label>
                 <select id="editarImportancia" name="importancia" required>
                     <option value="alta">🔴 Alta</option>
                     <option value="media">🟡 Media</option>
@@ -205,7 +205,7 @@ function obtenerColor($importancia)
             document.getElementById('modalVer').style.display = 'block';
         }
 
-        function abrirModalEditar(id, titulo, descripcion, fecha) {
+        function abrirModalEditar(id, titulo, descripcion, fecha, importancia) {
             document.getElementById('editarId').value = id;
             document.getElementById('editarTitulo').value = titulo;
             document.getElementById('editarDescripcion').value = descripcion;
