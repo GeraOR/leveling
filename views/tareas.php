@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario_id"])) {
 }
 $usuario_id = $_SESSION["usuario_id"];
 // Obtener tareas pendientes del usuario
-$sql_tareas = "SELECT id, titulo, descripcion, fecha_limite, xp_recompensa, importancia FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY id ASC";
+$sql_tareas = "SELECT id, titulo, descripcion, fecha_limite, xp_recompensa, importancia FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY importancia ASC";
 $stmt = $conn->prepare($sql_tareas);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
