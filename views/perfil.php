@@ -79,22 +79,6 @@ $_SESSION["foto"] = $foto;
                 <p><strong>Nivel:</strong> <span><?php echo $usuario["nivel"]; ?></span></p>
                 <p><strong>Experiencia:</strong> <span><?php echo $usuario["xp"]; ?>/100</span></p>
                 <p><strong>Rango:</strong> <span><?php echo $usuario["rango"]; ?></span></p>
-                <form action="../scripts/update_xp.php" method="POST" style="margin-top: 20px;">
-                    <label for="xp">Sumar experiencia:</label>
-                    <input type="number" name="xp" id="xp" min="1" required>
-                    <button type="submit">Ganar XP</button>
-                </form>
-
-                <?php if (isset($_SESSION["xp_success"])) : ?>
-                    <p style="color: green; font-weight: bold;"><?php echo $_SESSION["xp_success"]; ?></p>
-                    <?php unset($_SESSION["xp_success"]); ?>
-                <?php endif; ?>
-
-                <?php if (isset($_SESSION["xp_error"])) : ?>
-                    <p style="color: red; font-weight: bold;"><?php echo $_SESSION["xp_error"]; ?></p>
-                    <?php unset($_SESSION["xp_error"]); ?>
-                <?php endif; ?>
-
             </div>
         </section>
 
