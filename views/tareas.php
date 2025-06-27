@@ -5,6 +5,10 @@ if (!isset($_SESSION["usuario_id"])) {
     header("Location: ../index.php");
     exit();
 }
+
+// 👇 Agrega esto justo después de la sesión y conexión
+include "../scripts/verificar_tareas_vencidas.php";
+
 $usuario_id = $_SESSION["usuario_id"];
 // Obtener tareas pendientes del usuario
 $sql_tareas = "SELECT id, titulo, descripcion, fecha_limite, xp_recompensa, importancia FROM tareas WHERE usuario_id = ? AND estado = 1 ORDER BY importancia ASC";
@@ -38,6 +42,19 @@ function obtenerColor($importancia)
     <link rel="stylesheet" href="/leveling/assets/css/tareas.css?v=1.6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Mis Tareas - Solo Leveling</title>
+    <style>
+        .alerta-vencida {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-weight: bold;
+}
+
+    </style>
 </head>
 
 <body id="tareas">
@@ -54,6 +71,13 @@ function obtenerColor($importancia)
     </header>
 
     <main>
+<?php if (isset($_SESSION["penalizacion_info"])): ?>
+    <div class="alerta-vencida">
+        <pre><?php echo $_SESSION["penalizacion_info"]; ?></pre>
+    </div>
+    <?php unset($_SESSION["penalizacion_info"]); ?>
+<?php endif; ?>
+
         <section>
             <h2>Agregar Nueva Tarea</h2>
             <?php if (isset($_SESSION["task_success"])): ?>
