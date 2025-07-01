@@ -12,6 +12,10 @@ $titulo = trim($_POST["titulo"]);
 $descripcion = trim($_POST["descripcion"]);
 $fecha_limite = !empty($_POST["due_date"]) ? $_POST["due_date"] : null;
 $importancia = $_POST['importancia'];
+$repetible = isset($_POST["repetible"]) ? 1 : 0;
+$frecuencia = $_POST["frecuencia"] ?? null;
+$dias = isset($_POST["dias"]) ? implode(",", $_POST["dias"]) : null;
+
 
 // Función para asignar XP según importancia
 function obtenerXPporImportancia($importancia) {
@@ -27,10 +31,10 @@ function obtenerXPporImportancia($importancia) {
 $xp = obtenerXPporImportancia($importancia);
 
 if ($titulo && $descripcion) {
-    $sql = "INSERT INTO tareas (usuario_id, titulo, descripcion, fecha_limite, importancia, xp_recompensa)
-            VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("issssi", $usuario_id, $titulo, $descripcion, $fecha_limite, $importancia, $xp);
+    $sql = "INSERT INTO tareas (usuario_id, titulo, descripcion, fecha_limite, importancia, xp_recompensa, repetible, frecuencia, dias_repeticion)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("isssssiss", $usuario_id, $titulo, $descripcion, $fecha_limite, $importancia, $xp, $repetible, $frecuencia, $dias);
 
     if ($stmt->execute()) {
         $_SESSION["task_success"] = "Tarea agregada correctamente. Esta tarea vale $xp XP.";

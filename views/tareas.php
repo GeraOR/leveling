@@ -112,6 +112,93 @@ function obtenerColor($importancia)
                         <input type="date" id="due_date" name="due_date" required>
                     </div>
                 </div>
+<style>
+    .repeticion-wrapper {
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid rgba(0, 255, 255, 0.4);
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 15px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        color: #00eaff;
+    }
+
+    .repeticion-wrapper label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-shadow: 0 0 5px #00eaff;
+    }
+
+    .repeticion-wrapper select,
+    .repeticion-wrapper input[type="checkbox"] {
+        margin-right: 8px;
+        accent-color: #00eaff;
+    }
+
+    .dias-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .dias-container label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 1px solid #00eaff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .dias-container input {
+        transform: scale(1.2);
+    }
+</style>
+
+<div class="repeticion-wrapper">
+    <label>
+        <input type="checkbox" id="repetible" name="repetible" onchange="toggleRepeticion(this.checked)">
+        Repetir tarea
+    </label>
+
+    <div id="opcionesRepeticion" style="display: none;">
+        <label for="frecuencia">Frecuencia:</label>
+        <select name="frecuencia" id="frecuencia" onchange="toggleDiasEspecificos(this.value)">
+            <option value="diaria">Diaria</option>
+            <option value="semanal">Semanal</option>
+            <option value="mensual">Mensual</option>
+            <option value="personalizada">Días específicos</option>
+        </select>
+
+        <div id="diasEspecificos" class="dias-container" style="display: none;">
+            <label><input type="checkbox" name="dias[]" value="lunes">Lunes</label>
+            <label><input type="checkbox" name="dias[]" value="martes">Martes</label>
+            <label><input type="checkbox" name="dias[]" value="miercoles">Miércoles</label>
+            <label><input type="checkbox" name="dias[]" value="jueves">Jueves</label>
+            <label><input type="checkbox" name="dias[]" value="viernes">Viernes</label>
+            <label><input type="checkbox" name="dias[]" value="sabado">Sábado</label>
+            <label><input type="checkbox" name="dias[]" value="domingo">Domingo</label>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleRepeticion(checked) {
+    const opciones = document.getElementById('opcionesRepeticion');
+    opciones.style.display = checked ? 'block' : 'none';
+}
+
+function toggleDiasEspecificos(valor) {
+    const diasDiv = document.getElementById('diasEspecificos');
+    diasDiv.style.display = (valor === 'personalizada') ? 'flex' : 'none';
+}
+</script>
+
 
                 <button type="submit">Agregar</button>
             </form>
